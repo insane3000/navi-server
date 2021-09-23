@@ -1,0 +1,28 @@
+@api = http://localhost:5000
+
+
+GET {{api}}/motherboards
+
+### create motherboard
+POST http://localhost:5000/motherboards
+Content-Type: application/json
+
+{
+  "title": "z590-oc-formula",
+  "img": "http://localhost/s3/setupps-media/motherboards/z590-oc-formula/01.png",
+  "price":666.66
+}
+
+### GET VIDEO
+GET {{api}}/motherboards/6133eae98c3e9b66f9d52d62
+
+### DELETE VIDEO
+DELETE {{api}}/motherboards/61340c4158a4865e9a7ab852
+
+### UPDATE
+PUT {{api}}/motherboards/6134108758a4865e9a7ab863
+
+Content-Type: application/json
+{
+    "title": "z590 oc formulaasdsadasd",
+}
