@@ -5,6 +5,10 @@ import cors from "cors";
 import motherboardsRoutes from "./routes/motherboards/motherboards.routes";
 import cpusRoutes from "./routes/cpus/cpus.routes";
 import songRoutes from "./routes/song/song.routes";
+import bookRoutes from "./routes/book/book.routes";
+import productsRoutes from "./routes/products/products.routes";
+import cashRegisterRoutes from "./routes/cashRegister/cashRegister.routes";
+import authRoutes from "./routes/auth/auth.routes";
 
 var clientURI = {
   origin: ["http://192.168.0.148:3000", "http://localhost:3000"],
@@ -18,5 +22,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(motherboardsRoutes);
 app.use(cpusRoutes);
 app.use(songRoutes);
+app.use(bookRoutes);
+app.use(productsRoutes);
+app.use(cashRegisterRoutes);
+app.use(authRoutes);
 
 export default app;
