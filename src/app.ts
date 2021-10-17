@@ -9,9 +9,11 @@ import bookRoutes from "./routes/book/book.routes";
 import productsRoutes from "./routes/products/products.routes";
 import cashRegisterRoutes from "./routes/cashRegister/cashRegister.routes";
 import authRoutes from "./routes/auth/auth.routes";
+import dotenv from "dotenv";
 
+dotenv.config();
 var clientURI = {
-  origin: ["http://192.168.0.148:3000", "http://localhost:3000"],
+  origin: [`${process.env.URI}`],
 };
 const app = express();
 app.set("port", config.PORT);
