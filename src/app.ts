@@ -13,7 +13,7 @@ import authRoutes from "./routes/auth/auth.routes";
 
 // dotenv.config();
 var clientURI = {
-  origin: ["http://localhost:3000"],
+  origin: ["http://181.115.166.214:3000", "http://localhost:3000"],
 };
 const app = express();
 app.set("port", config.PORT);
