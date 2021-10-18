@@ -16,8 +16,8 @@ var clientURI = {
   origin: [
     "http://192.168.0.148:3000",
     "http://localhost:3000",
-    "http://navigamescbba.com",
-    "http://www.navigamescbba.com",
+    "https://navigamescbba.com",
+    "https://www.navigamescbba.com",
   ],
 };
 const app = express();
