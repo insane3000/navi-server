@@ -20,6 +20,7 @@ var clientURI = {
     origin: [
         // "http://192.168.0.148:3000",
         "http://0.0.0.0:3000",
+        "http://localhost:3000",
         // "https://navigamescbba.com",
     ],
 };
