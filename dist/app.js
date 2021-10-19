@@ -19,7 +19,7 @@ const auth_routes_1 = __importDefault(require("./routes/auth/auth.routes"));
 var clientURI = {
     origin: [
         // "http://192.168.0.148:3000",
-        "http://18.230.170.233:3000",
+        "http://0.0.0.0:3000",
         // "http://localhost:3000",
         // "https://navigamescbba.com",
     ],
