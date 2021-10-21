@@ -4,6 +4,7 @@ const cashRegisterSchema = new Schema(
   {
     lastRecord: String,
     login: String,
+    date: String,
     dashboard: {
       // _id: String,
       date: String,

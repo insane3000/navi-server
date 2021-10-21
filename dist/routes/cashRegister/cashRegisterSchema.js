@@ -4,6 +4,7 @@ const mongoose_1 = require("mongoose");
 const cashRegisterSchema = new mongoose_1.Schema({
     lastRecord: String,
     login: String,
+    date: String,
     dashboard: {
         // _id: String,
         date: String,

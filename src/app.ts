@@ -13,7 +13,7 @@ import authRoutes from "./routes/auth/auth.routes";
 
 // dotenv.config();
 var clientURI = {
-  origin: ["http://localhost:3000", "https://navigamescbba.com"],
+  origin: ["http://localhost:3000","http://192.168.0.148:3000", "https://navigamescbba.com"],
 };
 const app = express();
 app.set("port", config.PORT);
