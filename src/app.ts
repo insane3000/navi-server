@@ -9,11 +9,16 @@ import bookRoutes from "./routes/book/book.routes";
 import productsRoutes from "./routes/products/products.routes";
 import cashRegisterRoutes from "./routes/cashRegister/cashRegister.routes";
 import authRoutes from "./routes/auth/auth.routes";
+import computerRoutes from "./routes/computer/computer.routes";
 // import dotenv from "dotenv";
 
 // dotenv.config();
 var clientURI = {
-  origin: ["http://localhost:3000","http://192.168.0.148:3000", "https://navigamescbba.com"],
+  origin: [
+    "http://localhost:3000",
+    "http://192.168.0.148:3000",
+    "https://navigamescbba.com",
+  ],
 };
 const app = express();
 app.set("port", config.PORT);
@@ -28,5 +33,6 @@ app.use(bookRoutes);
 app.use(productsRoutes);
 app.use(cashRegisterRoutes);
 app.use(authRoutes);
+app.use(computerRoutes);
 
 export default app;
