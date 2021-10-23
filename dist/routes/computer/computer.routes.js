@@ -20,10 +20,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const authCtrl = __importStar(require("./auth.controller"));
+const computerCtrl = __importStar(require("./computer.controller"));
+const validateToken_1 = require("../../libs/validateToken");
 const router = (0, express_1.Router)();
-router.post("/signup", authCtrl.signup);
-router.post("/login", authCtrl.login);
-router.get("/profile/:id", authCtrl.profile);
-router.put("/profile/:id", authCtrl.updateProfile);
+router.get("/computer", validateToken_1.tokenValidation, computerCtrl.getComputers);
+router.get("/computer/:id", validateToken_1.tokenValidation, computerCtrl.getComputer);
+router.post("/computer", validateToken_1.tokenValidation, computerCtrl.createComputer);
+router.delete("/computer/:id", validateToken_1.tokenValidation, computerCtrl.deleteComputer);
+router.put("/computer/:id", validateToken_1.tokenValidation, computerCtrl.updateComputer);
 exports.default = router;
