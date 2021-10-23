@@ -22,7 +22,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const authCtrl = __importStar(require("./auth.controller"));
 const router = (0, express_1.Router)();
-router.post("/signup", authCtrl.signup);
+// router.post("/signup", authCtrl.signup);
 router.post("/login", authCtrl.login);
 router.get("/profile/:id", authCtrl.profile);
 router.put("/profile/:id", authCtrl.updateProfile);
