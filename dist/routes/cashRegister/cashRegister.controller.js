@@ -14,13 +14,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateCashRegister = exports.deleteCashRegister = exports.getCashRegisterLast = exports.getCashRegister = exports.getCashRegisters = exports.createCashRegister = void 0;
 const cashRegisterSchema_1 = __importDefault(require("./cashRegisterSchema"));
+// import dotenv from "dotenv";
+// dotenv.config();
+const mongoS3Backup = require("node-mongodump-s3");
+const bucketName = process.env.AWS_S3_DUMP_BUCKET;
+const accessKey = process.env.AWS_ACCESS_KEY_ID;
+const accessSecret = process.env.AWS_SECRET_ACCESS_KEY;
+const dbConnectionUri = process.env.MONGO_URI;
+const backupClient = mongoS3Backup({ bucketName, accessKey, accessSecret });
 const createCashRegister = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // const cashRegisterFound = await CashRegister.findOne({ url: req.body.url });
-    // if (cashRegisterFound)
-    //   return res.status(303).json({ message: "the url already exists" });
     const newCashRegister = new cashRegisterSchema_1.default(req.body);
     const savedCashRegister = yield newCashRegister.save();
     res.json(savedCashRegister);
+    backupClient
+        .backupDatabase({
+        uri: dbConnectionUri,
+        backupName: "mongoDB" + Date.now(),
+        prefix: "backups/",
+    })
+        .then((response) => {
+        console.log("Success response ", response);
+    })
+        .catch((err) => {
+        console.log("error is ", err);
+    });
 });
 exports.createCashRegister = createCashRegister;
 const getCashRegisters = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

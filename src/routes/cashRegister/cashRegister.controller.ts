@@ -1,14 +1,34 @@
 import { Response, RequestHandler } from "express";
 import CashRegister from "./cashRegisterSchema";
+// import dotenv from "dotenv";
+// dotenv.config();
+
+const mongoS3Backup = require("node-mongodump-s3");
+
+const bucketName = process.env.AWS_S3_DUMP_BUCKET;
+const accessKey = process.env.AWS_ACCESS_KEY_ID;
+const accessSecret = process.env.AWS_SECRET_ACCESS_KEY;
+const dbConnectionUri = process.env.MONGO_URI;
+
+const backupClient = mongoS3Backup({ bucketName, accessKey, accessSecret });
 
 export const createCashRegister: RequestHandler = async (req, res) => {
-  // const cashRegisterFound = await CashRegister.findOne({ url: req.body.url });
-  // if (cashRegisterFound)
-  //   return res.status(303).json({ message: "the url already exists" });
-
   const newCashRegister = new CashRegister(req.body);
   const savedCashRegister = await newCashRegister.save();
   res.json(savedCashRegister);
+  
+  backupClient
+    .backupDatabase({
+      uri: dbConnectionUri,
+      backupName: "mongoDB" + Date.now(),
+      prefix: "backups/",
+    })
+    .then((response: any) => {
+      console.log("Success response ", response);
+     })
+    .catch((err: any) => {
+      console.log("error is ", err);
+    });
 };
 
 export const getCashRegisters: RequestHandler = async (req, res) => {
