@@ -3,15 +3,10 @@ import { Schema, model } from "mongoose";
 const bookSchema = new Schema(
   {
     title: String,
-    titleEsp: String,
-    rating: Number,
-    year: String,
-    genre: String,
-    time: String,
-    actors: String,
-    synopsis: String,
-    link: String,
+    author: String,
     image: String,
+    content: String,
+    readed: String,
   },
   {
     versionKey: false,

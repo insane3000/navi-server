@@ -63,17 +63,9 @@ export const createBook: RequestHandler = async (req: any, res) => {
   // console.log(req.body.title);
   let newBook = new Book({
     title: req.body.title,
-    titleEsp: req.body.titleEsp,
-    rating: req.body.rating,
-    year: req.body.year,
-    genre: req.body.genre,
-    time: req.body.time,
-    actors: req.body.actors,
-    synopsis: req.body.synopsis,
-    link: req.body.link,
     image: req.file?.location,
   });
-  console.log(newBook);
+  console.log(req.file?.location);
   // const newBook = new Book(req.body);
   const savedBook = await newBook.save();
   res.json(savedBook);
@@ -88,47 +80,7 @@ export const getBooks: RequestHandler = async (req, res) => {
     res.json(error);
   }
 };
-// !Pruebas by Gener
-export const getBooksByGenre: RequestHandler = async (req, res) => {
-  try {
-    const books = await Book.find({
-      genre: { $regex: `${req.params.id}*`, $options: "i" },
-    });
-    // const books = await Book.find({"year": req.params.id});
-    return res.json(books);
-  } catch (error) {
-    res.json(error);
-  }
-};
-// !Pruebas Search
-export const getBookSearch: RequestHandler = async (req, res) => {
-  try {
-    const books = await Book.find(
-      {
-        // titleEsp: { $regex: `${req.params.id}*`, $options: "i" },
-        title: { $regex: `${req.params.id}*`, $options: "i" },
-      },
-      // function (err, docs) {
-      //   return docs
-      //   console.log(docs);
-      // }
-    );
-    // const books = await Book.find({"year": req.params.id});
-    return res.json(books);
-  } catch (error) {
-    res.json(error);
-  }
-};
-// !Pruebas y Year
-export const getBooksByYear: RequestHandler = async (req, res) => {
-  try {
-    // const books = await Book.find({"genre": /.*animaci*/i});
-    const books = await Book.find({ year: req.params.id });
-    return res.json(books);
-  } catch (error) {
-    res.json(error);
-  }
-};
+
 export const getBook: RequestHandler = async (req, res) => {
   const bookFound = await Book.findById(req.params.id);
 
