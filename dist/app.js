@@ -22,7 +22,7 @@ var clientURI = {
         "http://localhost:3000",
         "http://192.168.0.148:3000",
         "https://navigamescbba.com",
-        // "https://insane3000.github.io/",
+        "https://insane3000.github.io",
     ],
 };
 const app = (0, express_1.default)();
