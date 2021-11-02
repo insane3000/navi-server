@@ -22,7 +22,7 @@ var clientURI = {
         "http://localhost:3000",
         "http://192.168.0.148:3000",
         "https://navigamescbba.com",
-        "https://dtid09x3ren7e.cloudfront.net/",
+        "https://dtid09x3ren7e.cloudfront.net",
     ],
 };
 const app = (0, express_1.default)();
