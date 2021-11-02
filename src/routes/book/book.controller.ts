@@ -103,17 +103,13 @@ export const getBooksByGenre: RequestHandler = async (req, res) => {
 // !Pruebas Search
 export const getBookSearch: RequestHandler = async (req, res) => {
   try {
-    const books = await Book.find(
-      {
-        // titleEsp: { $regex: `${req.params.id}*`, $options: "i" },
-        title: { $regex: `${req.params.id}*`, $options: "i" },
-      },
-      // function (err, docs) {
-      //   return docs
-      //   console.log(docs);
-      // }
-    );
-    // const books = await Book.find({"year": req.params.id});
+    const books = await Book.find({
+      $or: [
+        { title: { $regex: `${req.params.id}*`, $options: "i" } },
+        { titleEsp: { $regex: `${req.params.id}*`, $options: "i" } },
+      ],
+    });
+
     return res.json(books);
   } catch (error) {
     res.json(error);
