@@ -18,7 +18,7 @@ var clientURI = {
     "http://localhost:3000",
     "http://192.168.0.148:3000",
     "https://navigamescbba.com",
-    "http://shoke.cc.s3-website-sa-east-1.amazonaws.com",
+    "https://dtid09x3ren7e.cloudfront.net/",
   ],
 };
 const app = express();
