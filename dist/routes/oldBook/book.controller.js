@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateBook = exports.deleteBook = exports.getBook = exports.getBooksByYear = exports.getBookSearch = exports.getBooksByGenre = exports.getBooks = exports.createBook = exports.upload = void 0;
+exports.updateBook = exports.deleteBook = exports.getBook = exports.getBooks = exports.createBook = exports.upload = void 0;
 const bookSchema_1 = __importDefault(require("./bookSchema"));
 const bucketName = process.env.AWS_S3_DUMP_BUCKET;
 const accessKey = process.env.AWS_ACCESS_KEY_ID;
@@ -67,22 +67,14 @@ exports.upload = (0, multer_1.default)({
 // });
 // export const uploadImage = upload.single("file");
 const createBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
+    var _a, _b;
     // console.log(req.file);
     // console.log(req.body.title);
     let newBook = new bookSchema_1.default({
         title: req.body.title,
-        titleEsp: req.body.titleEsp,
-        rating: req.body.rating,
-        year: req.body.year,
-        genre: req.body.genre,
-        time: req.body.time,
-        actors: req.body.actors,
-        synopsis: req.body.synopsis,
-        link: req.body.link,
         image: (_a = req.file) === null || _a === void 0 ? void 0 : _a.location,
     });
-    console.log(newBook);
+    console.log((_b = req.file) === null || _b === void 0 ? void 0 : _b.location);
     // const newBook = new Book(req.body);
     const savedBook = yield newBook.save();
     res.json(savedBook);
@@ -99,48 +91,6 @@ const getBooks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getBooks = getBooks;
-// !Pruebas by Gener
-const getBooksByGenre = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const books = yield bookSchema_1.default.find({
-            genre: { $regex: `${req.params.id}*`, $options: "i" },
-        });
-        // const books = await Book.find({"year": req.params.id});
-        return res.json(books);
-    }
-    catch (error) {
-        res.json(error);
-    }
-});
-exports.getBooksByGenre = getBooksByGenre;
-// !Pruebas Search
-const getBookSearch = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const books = yield bookSchema_1.default.find({
-            $or: [
-                { title: { $regex: `${req.params.id}*`, $options: "i" } },
-                { titleEsp: { $regex: `${req.params.id}*`, $options: "i" } },
-            ],
-        });
-        return res.json(books);
-    }
-    catch (error) {
-        res.json(error);
-    }
-});
-exports.getBookSearch = getBookSearch;
-// !Pruebas y Year
-const getBooksByYear = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        // const books = await Book.find({"genre": /.*animaci*/i});
-        const books = yield bookSchema_1.default.find({ year: req.params.id });
-        return res.json(books);
-    }
-    catch (error) {
-        res.json(error);
-    }
-});
-exports.getBooksByYear = getBooksByYear;
 const getBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const bookFound = yield bookSchema_1.default.findById(req.params.id);
     if (!bookFound)
