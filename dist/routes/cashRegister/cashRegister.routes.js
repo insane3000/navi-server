@@ -30,4 +30,8 @@ router.delete("/cash-register/:id", validateToken_1.tokenValidation, cashRegiste
 router.put("/cash-register/:id", validateToken_1.tokenValidation, cashRegisterCtrl.updateCashRegister);
 // !Last
 router.get("/cash-register-one", validateToken_1.tokenValidation, cashRegisterCtrl.getCashRegisterLast);
+// !Last 21 to reports
+router.get("/reports", validateToken_1.tokenValidation, cashRegisterCtrl.getReports);
+// !Charts Anual
+router.get("/charts-anual", validateToken_1.tokenValidation, cashRegisterCtrl.getChartsAnual);
 exports.default = router;

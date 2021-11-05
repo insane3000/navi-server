@@ -77,7 +77,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(400).json("invalid password");
     }
     const token = jsonwebtoken_1.default.sign({ _id: user._id }, "insane3000", {
-        expiresIn: 60 * 60 * 24,
+        expiresIn: 60 * 60 * 24 * 30,
     });
     res.json({ token, _id: user._id });
 });

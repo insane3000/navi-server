@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateCashRegister = exports.deleteCashRegister = exports.getCashRegisterLast = exports.getCashRegister = exports.getCashRegisters = exports.createCashRegister = void 0;
+exports.updateCashRegister = exports.deleteCashRegister = exports.getChartsAnual = exports.getReports = exports.getCashRegisterLast = exports.getCashRegister = exports.getCashRegisters = exports.createCashRegister = void 0;
 const cashRegisterSchema_1 = __importDefault(require("./cashRegisterSchema"));
 // import dotenv from "dotenv";
 // dotenv.config();
@@ -67,6 +67,38 @@ const getCashRegisterLast = (req, res) => __awaiter(void 0, void 0, void 0, func
     return res.json(cashRegisterFound);
 });
 exports.getCashRegisterLast = getCashRegisterLast;
+// !get !Last 21 to reports
+const getReports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const cashRegisterFound = yield cashRegisterSchema_1.default.find({})
+        .limit(21)
+        .sort({ $natural: -1 });
+    if (!cashRegisterFound)
+        return res.status(204).json();
+    // console.log(cashRegisterFound);
+    return res.json(cashRegisterFound.map((i) => {
+        i.dashboard;
+        i.sales = [];
+        i.expenses = [];
+        return i;
+    }));
+});
+exports.getReports = getReports;
+// !get !Charts Anual
+const getChartsAnual = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const cashRegisterFound = yield cashRegisterSchema_1.default.find({});
+    // .limit(23)
+    // .sort({ $natural: -1 });
+    if (!cashRegisterFound)
+        return res.status(204).json();
+    // console.log(cashRegisterFound);
+    return res.json(cashRegisterFound.map((i) => {
+        i.dashboard;
+        i.sales = [];
+        i.expenses = [];
+        return i;
+    }));
+});
+exports.getChartsAnual = getChartsAnual;
 const deleteCashRegister = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const cashRegisterFound = yield cashRegisterSchema_1.default.findByIdAndDelete(req.params.id);
     if (!cashRegisterFound)

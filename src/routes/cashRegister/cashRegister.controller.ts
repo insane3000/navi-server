@@ -16,7 +16,7 @@ export const createCashRegister: RequestHandler = async (req, res) => {
   const newCashRegister = new CashRegister(req.body);
   const savedCashRegister = await newCashRegister.save();
   res.json(savedCashRegister);
-  
+
   backupClient
     .backupDatabase({
       uri: dbConnectionUri,
@@ -25,7 +25,7 @@ export const createCashRegister: RequestHandler = async (req, res) => {
     })
     .then((response: any) => {
       console.log("Success response ", response);
-     })
+    })
     .catch((err: any) => {
       console.log("error is ", err);
     });
@@ -57,7 +57,38 @@ export const getCashRegisterLast: RequestHandler = async (req, res) => {
 
   return res.json(cashRegisterFound);
 };
-
+// !get !Last 21 to reports
+export const getReports: RequestHandler = async (req, res) => {
+  const cashRegisterFound = await CashRegister.find({})
+    .limit(21)
+    .sort({ $natural: -1 });
+  if (!cashRegisterFound) return res.status(204).json();
+  // console.log(cashRegisterFound);
+  return res.json(
+    cashRegisterFound.map((i: any) => {
+      i.dashboard;
+      i.sales = [];
+      i.expenses = [];
+      return i;
+    })
+  );
+};
+// !get !Charts Anual
+export const getChartsAnual: RequestHandler = async (req, res) => {
+  const cashRegisterFound = await CashRegister.find({});
+  // .limit(23)
+  // .sort({ $natural: -1 });
+  if (!cashRegisterFound) return res.status(204).json();
+  // console.log(cashRegisterFound);
+  return res.json(
+    cashRegisterFound.map((i: any) => {
+      i.dashboard;
+      i.sales = [];
+      i.expenses = [];
+      return i;
+    })
+  );
+};
 export const deleteCashRegister: RequestHandler = async (req, res) => {
   const cashRegisterFound = await CashRegister.findByIdAndDelete(req.params.id);
 

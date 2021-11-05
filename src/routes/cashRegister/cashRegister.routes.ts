@@ -33,5 +33,8 @@ router.get(
   tokenValidation,
   cashRegisterCtrl.getCashRegisterLast
 );
-
+// !Last 21 to reports
+router.get("/reports", tokenValidation, cashRegisterCtrl.getReports);
+// !Charts Anual
+router.get("/charts-anual", tokenValidation, cashRegisterCtrl.getChartsAnual);
 export default router;

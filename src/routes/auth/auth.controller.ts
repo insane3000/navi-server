@@ -82,7 +82,7 @@ export const login: RequestHandler = async (req, res) => {
   }
 
   const token: string = jwt.sign({ _id: user._id }, "insane3000", {
-    expiresIn: 60 * 60 * 24,
+    expiresIn: 60 * 60 * 24 * 30,
   });
 
   res.json({ token, _id: user._id });
