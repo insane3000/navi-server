@@ -11,7 +11,9 @@ const products_routes_1 = __importDefault(require("./routes/products/products.ro
 const cashRegister_routes_1 = __importDefault(require("./routes/cashRegister/cashRegister.routes"));
 const auth_routes_1 = __importDefault(require("./routes/auth/auth.routes"));
 const computer_routes_1 = __importDefault(require("./routes/computer/computer.routes"));
+const invoice_routes_1 = __importDefault(require("./routes/invoice/invoice.routes"));
 // import dotenv from "dotenv";
+const path_1 = __importDefault(require("path"));
 // dotenv.config();
 var clientURI = {
     origin: [
@@ -32,4 +34,6 @@ app.use(products_routes_1.default);
 app.use(cashRegister_routes_1.default);
 app.use(auth_routes_1.default);
 app.use(computer_routes_1.default);
+app.use(invoice_routes_1.default);
+app.use("/static", express_1.default.static(path_1.default.join(__dirname, "../public")));
 exports.default = app;

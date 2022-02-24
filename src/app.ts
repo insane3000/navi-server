@@ -6,8 +6,9 @@ import productsRoutes from "./routes/products/products.routes";
 import cashRegisterRoutes from "./routes/cashRegister/cashRegister.routes";
 import authRoutes from "./routes/auth/auth.routes";
 import computerRoutes from "./routes/computer/computer.routes";
+import invoiceRoutes from "./routes/invoice/invoice.routes";
 // import dotenv from "dotenv";
-
+import path from "path";
 // dotenv.config();
 var clientURI = {
   origin: [
@@ -28,5 +29,7 @@ app.use(productsRoutes);
 app.use(cashRegisterRoutes);
 app.use(authRoutes);
 app.use(computerRoutes);
+app.use(invoiceRoutes);
+app.use("/static", express.static(path.join(__dirname, "../public")));
 
 export default app;
