@@ -25,7 +25,7 @@ const uploadLocal = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
     let model = removeNonAplhaNumeric(`${req.body.model}`);
     let random = (0, crypto_1.randomBytes)(6).toString("hex");
     const pathSave = path_1.default.join(__dirname, `../../public/invoices/`);
-    console.log(req.files);
+    //   console.log(req.files);
     if (req.files) {
         var s = [];
         var m = [];

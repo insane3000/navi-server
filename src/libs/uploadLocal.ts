@@ -10,7 +10,7 @@ export const uploadLocal = async (req: any, res: Response, next: NextFunction) =
   let model = removeNonAplhaNumeric(`${req.body.model}`);
   let random = randomBytes(6).toString("hex");
   const pathSave = path.join(__dirname, `../../public/invoices/`);
-  console.log(req.files);
+//   console.log(req.files);
   if (req.files) {
     var s: any = [];
     var m: any = [];
