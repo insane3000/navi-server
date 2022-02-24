@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-
+import mongoosePaginate from "mongoose-paginate-v2";
 const cashRegisterSchema = new Schema(
   {
     lastRecord: String,
@@ -43,4 +43,5 @@ const cashRegisterSchema = new Schema(
     timestamps: true,
   }
 );
+cashRegisterSchema.plugin(mongoosePaginate);
 export default model("cashRegister", cashRegisterSchema);

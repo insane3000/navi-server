@@ -20,9 +20,7 @@ export const updateProfile: RequestHandler = async (req, res) => {
   if (!user) {
     return res.status(400).json("usuario no encontrado o datos incorrectos");
   }
-  const correctPassword: boolean = await user.validatePassword(
-    req.body.oldPassword
-  );
+  const correctPassword: boolean = await user.validatePassword(req.body.oldPassword);
   if (!correctPassword) {
     return res.status(400).json("invalid password");
   }
@@ -30,9 +28,7 @@ export const updateProfile: RequestHandler = async (req, res) => {
     password: req.body.newPassword,
   });
 
-  newPassword.password = await newPassword.encryptPassword(
-    newPassword.password
-  );
+  newPassword.password = await newPassword.encryptPassword(newPassword.password);
 
   const userUpdated = await User.findByIdAndUpdate(
     req.body._id,
@@ -57,10 +53,7 @@ export const signup: RequestHandler = async (req, res) => {
   const savedUser = await newUser.save();
 
   // !token
-  const token: string = jwt.sign(
-    { _id: savedUser._id },
-    `${process.env.TOKEN_SECRET}`
-  );
+  const token: string = jwt.sign({ _id: savedUser._id }, `${process.env.TOKEN_SECRET}`);
   console.log(token);
   res.header("token", token).json(savedUser);
 };
@@ -73,9 +66,7 @@ export const login: RequestHandler = async (req, res) => {
   if (!user) {
     return res.status(400).json("usuario no encontrado o datos incorrectos");
   }
-  const correctPassword: boolean = await user.validatePassword(
-    req.body.password
-  );
+  const correctPassword: boolean = await user.validatePassword(req.body.password);
 
   if (!correctPassword) {
     return res.status(400).json("invalid password");
@@ -83,6 +74,7 @@ export const login: RequestHandler = async (req, res) => {
 
   const token: string = jwt.sign({ _id: user._id }, "insane3000", {
     expiresIn: 60 * 60 * 24 * 30,
+    //     expiresIn: 60 * 60,
   });
 
   res.json({ token, _id: user._id });

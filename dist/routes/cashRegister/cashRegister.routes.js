@@ -34,4 +34,6 @@ router.get("/cash-register-one", validateToken_1.tokenValidation, cashRegisterCt
 router.get("/reports", validateToken_1.tokenValidation, cashRegisterCtrl.getReports);
 // !Charts Anual
 router.get("/charts-anual", validateToken_1.tokenValidation, cashRegisterCtrl.getChartsAnual);
+// !Servers
+router.get("/servers", validateToken_1.tokenValidation, cashRegisterCtrl.getServers);
 exports.default = router;

@@ -36,6 +36,6 @@ const router = (0, express_1.Router)();
 router.post("/invoice", upload.array("files"), uploadLocal_1.uploadLocal, invoiceCtrl.createInvoice);
 router.delete("/invoice/:id", validateToken_1.tokenValidation, invoiceCtrl.deleteInvoice);
 // !Rutas Client
-router.get("/invoice", invoiceCtrl.getInvoices);
-router.get("/invoice/:id", invoiceCtrl.getInvoice);
+router.get("/invoice", validateToken_1.tokenValidation, invoiceCtrl.getInvoices);
+router.get("/invoice/:id", validateToken_1.tokenValidation, invoiceCtrl.getInvoice);
 exports.default = router;

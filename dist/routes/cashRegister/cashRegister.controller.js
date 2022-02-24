@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateCashRegister = exports.deleteCashRegister = exports.getChartsAnual = exports.getReports = exports.getCashRegisterLast = exports.getCashRegister = exports.getCashRegisters = exports.createCashRegister = void 0;
+exports.updateCashRegister = exports.deleteCashRegister = exports.getChartsAnual = exports.getReports = exports.getCashRegisterLast = exports.getCashRegister = exports.getServers = exports.getCashRegisters = exports.createCashRegister = void 0;
 const cashRegisterSchema_1 = __importDefault(require("./cashRegisterSchema"));
 // import dotenv from "dotenv";
 // dotenv.config();
@@ -50,6 +50,20 @@ const getCashRegisters = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getCashRegisters = getCashRegisters;
+//!Servers
+const getServers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const servers = yield cashRegisterSchema_1.default.paginate({}, {
+            sort: { updatedAt: "desc" },
+            limit: 105,
+        });
+        return res.json(servers);
+    }
+    catch (error) {
+        // res.json(movies);
+    }
+});
+exports.getServers = getServers;
 const getCashRegister = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const cashRegisterFound = yield cashRegisterSchema_1.default.findById(req.params.id);
     if (!cashRegisterFound)
@@ -59,9 +73,7 @@ const getCashRegister = (req, res) => __awaiter(void 0, void 0, void 0, function
 exports.getCashRegister = getCashRegister;
 // !get Last
 const getCashRegisterLast = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const cashRegisterFound = yield cashRegisterSchema_1.default.find()
-        .limit(1)
-        .sort({ $natural: -1 });
+    const cashRegisterFound = yield cashRegisterSchema_1.default.find().limit(1).sort({ $natural: -1 });
     if (!cashRegisterFound)
         return res.status(204).json();
     return res.json(cashRegisterFound);
@@ -69,18 +81,17 @@ const getCashRegisterLast = (req, res) => __awaiter(void 0, void 0, void 0, func
 exports.getCashRegisterLast = getCashRegisterLast;
 // !get !Last 21 to reports
 const getReports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const cashRegisterFound = yield cashRegisterSchema_1.default.find({})
-        .limit(21)
-        .sort({ $natural: -1 });
-    if (!cashRegisterFound)
-        return res.status(204).json();
-    // console.log(cashRegisterFound);
-    return res.json(cashRegisterFound.map((i) => {
-        i.dashboard;
-        i.sales = [];
-        i.expenses = [];
-        return i;
-    }));
+    console.log(req.query);
+    try {
+        const reports = yield cashRegisterSchema_1.default.paginate({}, {
+            sort: { updatedAt: "desc" },
+            limit: 21,
+        });
+        return res.json(reports);
+    }
+    catch (error) {
+        // res.json(movies);
+    }
 });
 exports.getReports = getReports;
 // !get !Charts Anual

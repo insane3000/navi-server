@@ -15,7 +15,7 @@ const router = Router();
 router.post("/invoice", upload.array("files"), uploadLocal, invoiceCtrl.createInvoice);
 router.delete("/invoice/:id", tokenValidation, invoiceCtrl.deleteInvoice);
 // !Rutas Client
-router.get("/invoice", invoiceCtrl.getInvoices);
-router.get("/invoice/:id", invoiceCtrl.getInvoice);
+router.get("/invoice", tokenValidation, invoiceCtrl.getInvoices);
+router.get("/invoice/:id", tokenValidation, invoiceCtrl.getInvoice);
 
 export default router;

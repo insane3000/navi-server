@@ -78,6 +78,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     const token = jsonwebtoken_1.default.sign({ _id: user._id }, "insane3000", {
         expiresIn: 60 * 60 * 24 * 30,
+        //     expiresIn: 60 * 60,
     });
     res.json({ token, _id: user._id });
 });
