@@ -12,8 +12,8 @@ export const createInvoice: RequestHandler = async (req: any, res) => {
 
 // ! Get todas las facturas
 export const getInvoices: RequestHandler = async (req: any, res) => {
-  const year = req.query.year || 2022;
-  console.log(req.query);
+  const year = req.query.year || new Date().getFullYear();
+  //   console.log(req.query);
   try {
     const movies = await Invoice.paginate(
       {
