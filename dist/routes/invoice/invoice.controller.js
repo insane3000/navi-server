@@ -26,8 +26,8 @@ const createInvoice = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.createInvoice = createInvoice;
 // ! Get todas las facturas
 const getInvoices = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const year = req.query.year || 2022;
-    console.log(req.query);
+    const year = req.query.year || new Date().getFullYear();
+    //   console.log(req.query);
     try {
         const movies = yield invoiceSchema_1.default.paginate({
             year: year,

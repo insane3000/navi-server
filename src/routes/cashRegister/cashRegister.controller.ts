@@ -45,7 +45,7 @@ export const getServers: RequestHandler = async (req, res) => {
     const servers = await CashRegister.paginate(
       {},
       {
-        sort: { updatedAt: "desc" },
+        sort: { date: "desc" },
         limit: 105,
       }
     );
@@ -78,7 +78,7 @@ export const getReports: RequestHandler = async (req, res) => {
     const reports = await CashRegister.paginate(
       {},
       {
-        sort: { updatedAt: "desc" },
+        sort: { date: "desc" },
         limit: 21,
       }
     );

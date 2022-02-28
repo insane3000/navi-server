@@ -54,7 +54,7 @@ exports.getCashRegisters = getCashRegisters;
 const getServers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const servers = yield cashRegisterSchema_1.default.paginate({}, {
-            sort: { updatedAt: "desc" },
+            sort: { date: "desc" },
             limit: 105,
         });
         return res.json(servers);
@@ -84,7 +84,7 @@ const getReports = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     //   console.log(req.query);
     try {
         const reports = yield cashRegisterSchema_1.default.paginate({}, {
-            sort: { updatedAt: "desc" },
+            sort: { date: "desc" },
             limit: 21,
         });
         return res.json(reports);
