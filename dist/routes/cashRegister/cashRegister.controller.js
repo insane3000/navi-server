@@ -81,9 +81,10 @@ const getCashRegisterLast = (req, res) => __awaiter(void 0, void 0, void 0, func
 exports.getCashRegisterLast = getCashRegisterLast;
 // !get !Last 21 to reports
 const getReports = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    //   console.log(req.query);
+    const page = req.query.page || 1;
     try {
         const reports = yield cashRegisterSchema_1.default.paginate({}, {
+            page: page,
             sort: { date: "desc" },
             limit: 21,
         });

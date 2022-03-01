@@ -73,11 +73,12 @@ export const getCashRegisterLast: RequestHandler = async (req, res) => {
 };
 // !get !Last 21 to reports
 export const getReports: RequestHandler = async (req, res) => {
-  //   console.log(req.query);
+  const page: any = req.query.page || 1;
   try {
     const reports = await CashRegister.paginate(
       {},
       {
+        page: page,
         sort: { date: "desc" },
         limit: 21,
       }
