@@ -23,19 +23,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const invoiceCtrl = __importStar(require("./invoice.controller"));
-// import { tokenValidation } from "../../libs/validateToken";
-// import { expireValidation } from "../../libs/validateExpireCode";
-const uploadLocal_1 = require("../../libs/uploadLocal");
+const wifiCtrl = __importStar(require("./wifi.controller"));
 const multer_1 = __importDefault(require("multer"));
 const validateToken_1 = require("../../libs/validateToken");
 const upload = (0, multer_1.default)({ storage: multer_1.default.memoryStorage() });
 // const update = multer({ storage: multer.memoryStorage() });
 const router = (0, express_1.Router)();
 // !Action Admin
-router.post("/invoice", validateToken_1.tokenValidation, upload.array("files"), uploadLocal_1.uploadLocal, invoiceCtrl.createInvoice);
-router.delete("/invoice/:id", validateToken_1.tokenValidation, invoiceCtrl.deleteInvoice);
+// router.post("/wifi", tokenValidation, wifiCtrl.createInvoice);
+// router.delete("/wifi/:id", tokenValidation, wifiCtrl.deleteInvoice);
 // !Rutas Client
-router.get("/invoice", invoiceCtrl.getInvoices);
-router.get("/invoice/:id", validateToken_1.tokenValidation, invoiceCtrl.getInvoice);
+// router.get("/wifi", tokenValidation, wifiCtrl.getInvoices);
+router.get("/wifi/:id", wifiCtrl.getWifi);
+router.put("/wifi/:id", validateToken_1.tokenValidation, wifiCtrl.updateWifi);
 exports.default = router;

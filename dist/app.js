@@ -12,6 +12,7 @@ const cashRegister_routes_1 = __importDefault(require("./routes/cashRegister/cas
 const auth_routes_1 = __importDefault(require("./routes/auth/auth.routes"));
 const computer_routes_1 = __importDefault(require("./routes/computer/computer.routes"));
 const invoice_routes_1 = __importDefault(require("./routes/invoice/invoice.routes"));
+const wifi_routes_1 = __importDefault(require("./routes/wifi/wifi.routes"));
 // import dotenv from "dotenv";
 const path_1 = __importDefault(require("path"));
 // dotenv.config();
@@ -35,5 +36,6 @@ app.use(cashRegister_routes_1.default);
 app.use(auth_routes_1.default);
 app.use(computer_routes_1.default);
 app.use(invoice_routes_1.default);
+app.use(wifi_routes_1.default);
 app.use("/static", express_1.default.static(path_1.default.join(__dirname, "../public")));
 exports.default = app;
