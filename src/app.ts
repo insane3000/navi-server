@@ -7,6 +7,8 @@ import cashRegisterRoutes from "./routes/cashRegister/cashRegister.routes";
 import authRoutes from "./routes/auth/auth.routes";
 import computerRoutes from "./routes/computer/computer.routes";
 import invoiceRoutes from "./routes/invoice/invoice.routes";
+import wifiRoutes from "./routes/wifi/wifi.routes";
+
 // import dotenv from "dotenv";
 import path from "path";
 // dotenv.config();
@@ -30,6 +32,7 @@ app.use(cashRegisterRoutes);
 app.use(authRoutes);
 app.use(computerRoutes);
 app.use(invoiceRoutes);
+app.use(wifiRoutes);
 app.use("/static", express.static(path.join(__dirname, "../public")));
 
 export default app;

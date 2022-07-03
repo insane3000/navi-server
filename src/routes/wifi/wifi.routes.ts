@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as invoiceCtrl from "./invoice.controller";
+import * as wifiCtrl from "./wifi.controller";
 // import { tokenValidation } from "../../libs/validateToken";
 // import { expireValidation } from "../../libs/validateExpireCode";
 import { uploadLocal } from "../../libs/uploadLocal";
@@ -12,16 +12,11 @@ const upload = multer({ storage: multer.memoryStorage() });
 const router = Router();
 
 // !Action Admin
-router.post(
-  "/invoice",
-  tokenValidation,
-  upload.array("files"),
-  uploadLocal,
-  invoiceCtrl.createInvoice
-);
-router.delete("/invoice/:id", tokenValidation, invoiceCtrl.deleteInvoice);
+// router.post("/wifi", tokenValidation, wifiCtrl.createInvoice);
+// router.delete("/wifi/:id", tokenValidation, wifiCtrl.deleteInvoice);
 // !Rutas Client
-router.get("/invoice", invoiceCtrl.getInvoices);
-router.get("/invoice/:id", tokenValidation, invoiceCtrl.getInvoice);
+// router.get("/wifi", tokenValidation, wifiCtrl.getInvoices);
+router.get("/wifi/:id", wifiCtrl.getWifi);
+router.put("/wifi/:id", tokenValidation, wifiCtrl.updateWifi);
 
 export default router;
