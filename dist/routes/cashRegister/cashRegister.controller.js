@@ -55,7 +55,7 @@ const getServers = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const servers = yield cashRegisterSchema_1.default.paginate({}, {
             sort: { date: "desc" },
-            limit: 105,
+            limit: 120,
         });
         return res.json(servers);
     }
