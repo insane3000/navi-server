@@ -46,7 +46,7 @@ export const getServers: RequestHandler = async (req, res) => {
       {},
       {
         sort: { date: "desc" },
-        limit: 105,
+        limit: 120,
       }
     );
 
